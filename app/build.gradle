@@ -1,0 +1,79 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion 26
+    defaultConfig {
+        applicationId "com.yh.androidarchitecturecomponents"
+        minSdkVersion 15
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    /**
+     *
+     */
+//    //For Lifecycles, LiveData, and ViewModel
+//    implementation "android.arch.lifecycle:runtime:1.0.0-alpha1"
+//    implementation "android.arch.lifecycle:extensions:1.0.0-alpha1"
+//    annotationProcessor "android.arch.lifecycle:compiler:1.0.0-alpha1"
+//
+//    //For Room
+//    implementation "android.arch.persistence.room:runtime:1.0.0-alpha1"
+//    annotationProcessor "android.arch.persistence.room:compiler:1.0.0-alpha1"
+    /**
+     * lifeCycle
+     */
+    def lifecycle_version = "1.1.1"
+    // ViewModel and LiveData   / /视图模型和LiveData
+    implementation "android.arch.lifecycle:extensions:$lifecycle_version"
+    // alternatively - just ViewModel / /或者——只是视图模型
+    implementation "android.arch.lifecycle:viewmodel:$lifecycle_version" // use -ktx for Kotlin
+    // alternatively - just LiveData / /或者——只是LiveData
+    implementation "android.arch.lifecycle:livedata:$lifecycle_version"
+    // alternatively - Lifecycles only (no ViewModel or LiveData)./ /或者——生命周期只(没有ViewModel或LiveData)。
+    //     Support library depends on this lightweight import/ /支持库取决于这个轻量级的导入
+    implementation "android.arch.lifecycle:runtime:$lifecycle_version"
+
+    annotationProcessor "android.arch.lifecycle:compiler:$lifecycle_version"
+    // alternately - if using Java8, use the following instead of compiler / /交替——如果使用Java8,使用以下,而不是编译器
+    //implementation "android.arch.lifecycle:common-java8:$lifecycle_version"
+
+    // optional - ReactiveStreams support for LiveData / /可选- ReactiveStreams LiveData支持
+    implementation "android.arch.lifecycle:reactivestreams:$lifecycle_version"
+
+    // optional - Test helpers for LiveData / /可选-测试LiveData
+    testImplementation "android.arch.core:core-testing:$lifecycle_version"
+
+/**
+ * ROOM
+ */
+    def room_version = "1.1.0" // or, for latest rc, use "1.1.1-rc1"
+
+    implementation "android.arch.persistence.room:runtime:$room_version"
+    annotationProcessor "android.arch.persistence.room:compiler:$room_version"
+
+
+
+
+}
